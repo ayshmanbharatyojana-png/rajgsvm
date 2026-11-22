@@ -16,6 +16,25 @@ body{margin:0;padding:18px;background:#758079;font-family:Arial,Helvetica,sans-s
 .top{background:#fff;border-bottom:1px solid var(--line);padding:22px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:13px}
 .mark{width:42px;height:42px;border-radius:50%;background:var(--sage2);display:grid;place-items:center;color:var(--accent);font-size:23px;font-weight:bold}
+
+.back-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid #dce8e1;
+  background:#fff;
+  color:#183b32;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  cursor:pointer;
+  padding:0;
+  flex-shrink:0;
+}
+.back-btn:hover{
+  background:#e8f1ec;
+}
+
 .brand h1{font-family:Georgia,serif;font-size:21px;margin:0;letter-spacing:.2px}
 .brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:4px}
 .top-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -81,7 +100,21 @@ tbody tr:hover{background:#f7faf8}
 <body>
 <div class="shell">
 <header class="top">
-  <div class="brand"><div class="mark">+</div><div><h1>AYODHYA HEALTH</h1><small>DVDMS MONITORING DASHBOARD</small></div></div>
+  <div class="brand">
+  <button class="back-btn"
+    onclick="if(history.length>1){history.back()}else{location.href='../index.html'}"
+    title="Back" aria-label="Back">
+    &#8592;
+  </button>
+
+  <div class="mark">+</div>
+
+  <div>
+    <h1>AYODHYA HEALTH</h1>
+    <small>DVDMS MONITORING DASHBOARD</small>
+  </div>
+</div>
+
   <div class="top-right"><span class="pill">District: Ayodhya</span><span class="pill">Report date: <b id="reportDate">Loading…</b></span><span class="pill" id="connectionStatus">Connecting to Google Sheets…</span><button class="secondary" id="refreshBtn">Refresh data</button><button class="secondary" id="csvBtn">Export filtered CSV</button><button onclick="window.print()">Print report</button></div>
 </header>
 <main>

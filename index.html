@@ -26,6 +26,8 @@ input{width:100%;border:0;border-bottom:1px solid #dce2de;border-radius:0;paddin
 input:focus{border-bottom:2px solid #729b8b}input::placeholder{color:#b1bab5}
 .forgot{text-align:right;margin-top:9px}.forgot button{border:0;background:none;color:#91a39a;font-size:10px;padding:3px 0;cursor:pointer}
 .primary{width:100%;border:0;border-radius:22px;padding:12px 18px;background:#65766e;color:white;font-size:13px;margin-top:23px;cursor:pointer}.primary:hover{background:#4e675c}.primary:disabled{opacity:.6;cursor:wait}
+.divider{display:flex;align-items:center;gap:12px;margin:22px 0 17px;color:#b0b8b3;font-size:10px}.divider:before,.divider:after{content:"";height:1px;background:#e8ece9;flex:1}
+.google-note{text-align:center;color:#9aa39e;font-size:11px}.google-note strong{color:#687c71;font-weight:600}
 .create-note{text-align:center;font-size:10px;color:#a2aaa5;margin-top:31px}
 #message{font-size:12px;line-height:1.5;text-align:center;min-height:18px;margin-top:13px;color:#b54747}
 .hidden{display:none!important}
@@ -63,7 +65,7 @@ input:focus{border-bottom:2px solid #729b8b}input::placeholder{color:#b1bab5}
       <div class="forgot"><button id="resetButton" type="button">Forgot password?</button></div>
       <button class="primary" id="loginButton" type="submit">Sign in</button>
     </form>
-    <div class="divider">or</div><div class="google-note">🔒 &nbsp; <strong>Secure administrator access</strong></div>
+    
     <div id="message" role="status" aria-live="polite"></div><div class="create-note">Authorized users only · Ayodhya District</div>
   </div>
 </section>

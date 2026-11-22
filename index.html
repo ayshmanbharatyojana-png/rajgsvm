@@ -59,6 +59,18 @@ input:focus{border-bottom:2px solid #729b8b}input::placeholder{color:#b1bab5}
 @media(max-width:700px){.dashboard{width:100%;border-radius:8px}.portal-header{padding:14px;align-items:flex-start;flex-direction:column;gap:13px}.header-tools{width:100%;justify-content:space-between}.search-box{flex:1;width:auto}.user-label{display:none}.main-nav{padding:0 8px;min-height:45px}.nav-item summary{padding:15px 10px;font-size:10px}.mega-menu{position:fixed;top:130px;left:12px;right:12px;width:auto;grid-template-columns:1fr 1fr}.portal-main{padding:23px 14px 16px}.page-heading{align-items:flex-start;flex-direction:column;margin-bottom:20px}.page-heading h1{font-size:25px}.heading-note{font-size:10px}.module-section{padding:15px}.module-grid{grid-template-columns:1fr 1fr;gap:9px}.module-card{min-height:84px;padding:11px;gap:8px}.module-icon{width:31px;height:31px;flex-basis:31px;font-size:17px}.module-card h3{font-size:11px}.module-card p{font-size:9px}.section-heading h2{font-size:13px}}
 @media(max-width:390px){.module-grid{grid-template-columns:1fr}.mega-menu{grid-template-columns:1fr}.mega-links{border-left:0;padding-left:0}}
 
+
+/* Allow dropdown panels to extend beyond the dashboard's rounded container. */
+.container.dashboard{overflow:visible!important}
+.dashboard{overflow:visible!important}
+.main-nav{position:relative;z-index:1000;overflow:visible!important}
+.nav-item{position:relative;z-index:1001}
+.nav-item:hover,.nav-item:focus-within,.nav-item[open]{z-index:1002}
+.mega-menu{position:absolute;top:100%;left:0;z-index:1003;display:none}
+.nav-item:hover>.mega-menu,
+.nav-item:focus-within>.mega-menu,
+.nav-item[open]>.mega-menu{display:grid}
+
 </style>
 </head>
 <body>

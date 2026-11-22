@@ -1,120 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#a8c8bb">
 <title>Health Indicators | Ayodhya</title>
 <style>
+:root{--sage:#a8c8bb;--ink:#263b35;--accent:#557f70}
 *{box-sizing:border-box}
-body{
-  margin:0;font-family:Arial,sans-serif;
-  background:#eef3f7;color:#243447;
-  min-height:100vh;display:grid;place-items:center;
-}
-.container{
-  width:min(420px,92%);background:white;
-  border-radius:16px;overflow:hidden;
-  box-shadow:0 12px 40px #152b4020;
-}
-.header{
-  background:#102b46;color:white;
-  text-align:center;padding:32px 20px;
-}
-.header h2{margin:10px 0 5px}
-.header p{margin:0;color:#c9dbe9}
-.content{padding:28px}
-label{display:block;margin:15px 0 7px;font-size:14px}
-input{
-  width:100%;padding:13px;border:1px solid #ccd6df;
-  border-radius:7px;font-size:15px;
-}
-button{
-  width:100%;padding:14px;border:0;border-radius:7px;
-  background:#176b87;color:white;font-size:15px;
-  cursor:pointer;margin-top:18px;
-}
-button:disabled{opacity:.6;cursor:wait}
-.link{text-align:right;margin-top:12px}
-.link button{
-  width:auto;background:none;color:#176b87;
-  padding:5px;margin:0;font-size:13px;
-}
-.message{font-size:13px;margin-top:14px;line-height:1.5}
-footer{text-align:center;color:#718096;font-size:12px;margin-top:24px}
-.dashboard{width:min(850px,94%);padding:28px}
-.dashboard h2{color:#102b46}
-.cards{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:15px;margin-top:25px
-}
-.card{padding:22px;border:1px solid #dce4eb;border-radius:10px}
-.hidden{display:none}
+body{margin:0;min-height:100vh;padding:32px 18px;display:grid;place-items:center;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#737b77}
+.login-shell{width:min(960px,100%);min-height:560px;display:grid;grid-template-columns:1fr 1fr;background:#fff;overflow:hidden;border-radius:3px;box-shadow:0 24px 70px rgba(20,35,29,.24)}
+.art-panel{background:var(--sage);position:relative;min-height:560px;padding:38px 36px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.art-panel:before,.art-panel:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.22);border-radius:50%;width:340px;height:340px}
+.art-panel:before{top:-215px;left:-170px}.art-panel:after{bottom:-245px;right:-170px;width:390px;height:390px}
+.illustration{width:min(330px,92%);height:auto;position:relative;z-index:1}
+.art-copy{position:relative;z-index:1;margin-top:18px;color:#fff}
+.art-copy h2{font-size:19px;font-weight:500;margin:0 0 8px}
+.art-copy p{font-size:12px;line-height:1.55;margin:0;color:rgba(255,255,255,.9)}
+.dots{display:flex;gap:7px;margin-top:22px}.dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55)}.dots span:first-child{width:18px;border-radius:8px;background:#fff}
+.form-panel{padding:48px clamp(34px,7vw,78px);display:flex;flex-direction:column;justify-content:center;background:#fff}
+.brand{text-align:center;margin-bottom:42px}.brand-mark{font-family:Georgia,serif;font-size:29px;font-style:italic;font-weight:bold;letter-spacing:-1px;color:#3c5148}.brand-sub{font-size:10px;letter-spacing:2px;color:#8b9992;margin-top:7px}
+h1{font-size:22px;text-align:center;margin:0 0 9px;color:#33463e}.welcome{text-align:center;font-size:14px;color:#87918c;margin:0 0 31px}
+label{display:block;font-size:11px;color:#8b9690;margin:17px 0 7px}
+input{width:100%;border:0;border-bottom:1px solid #dce2de;border-radius:0;padding:9px 1px 11px;background:#fff;font-size:14px;color:#34443d;outline:none}
+input:focus{border-bottom:2px solid #729b8b}input::placeholder{color:#b1bab5}
+.forgot{text-align:right;margin-top:9px}.forgot button{border:0;background:none;color:#91a39a;font-size:10px;padding:3px 0;cursor:pointer}
+.primary{width:100%;border:0;border-radius:22px;padding:12px 18px;background:#65766e;color:white;font-size:13px;margin-top:23px;cursor:pointer}.primary:hover{background:#4e675c}.primary:disabled{opacity:.6;cursor:wait}
+.divider{display:flex;align-items:center;gap:12px;margin:22px 0 17px;color:#b0b8b3;font-size:10px}.divider:before,.divider:after{content:"";height:1px;background:#e8ece9;flex:1}
+.google-note{text-align:center;color:#9aa39e;font-size:11px}.google-note strong{color:#687c71;font-weight:600}
+.create-note{text-align:center;font-size:10px;color:#a2aaa5;margin-top:31px}
+#message{font-size:12px;line-height:1.5;text-align:center;min-height:18px;margin-top:13px;color:#b54747}
+.hidden{display:none!important}
+.dashboard{width:min(960px,100%);background:#fff;border-radius:12px;padding:36px;box-shadow:0 24px 70px rgba(20,35,29,.18)}
+.dashboard h2{color:#33463e;margin-top:0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px}
+.card{padding:22px;border:1px solid #dce4df;border-radius:10px;background:#fff}
+.dashboard button{width:100%;padding:13px;border:0;border-radius:22px;background:#65766e;color:white;font-size:14px;cursor:pointer;margin-top:22px}
+@media(max-width:700px){body{padding:18px 12px;background:#eef3f0}.login-shell{grid-template-columns:1fr;max-width:460px}.art-panel{min-height:250px;padding:22px 22px 18px}.illustration{width:175px;max-height:155px}.art-copy{margin-top:4px}.art-copy h2{font-size:16px}.art-copy p{display:none}.dots{margin-top:12px}.form-panel{padding:32px 30px 35px}.brand{margin-bottom:26px}.welcome{margin-bottom:23px}.dashboard{padding:24px}}
 </style>
 </head>
 <body>
-
-<div class="container" id="loginPanel">
-  <div class="header">
-    <div style="font-size:36px">♥</div>
-    <h2>HEALTH INDICATORS</h2>
-    <p>AYODHYA DISTRICT</p>
+<section class="login-shell" id="loginPanel">
+  <div class="art-panel">
+    <svg class="illustration" viewBox="0 0 360 330" role="img" aria-label="Decorative bird, leaves and flowers">
+      <defs><linearGradient id="birdBody" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f7c7a3"/><stop offset="1" stop-color="#d98e72"/></linearGradient><linearGradient id="wing" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#d95b72"/><stop offset="1" stop-color="#a83f5c"/></linearGradient></defs>
+      <path d="M175 255 C150 190 132 130 92 62 M145 173 C105 158 82 137 63 108 M157 206 C202 171 230 128 244 83" fill="none" stroke="#617f65" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#668b6b"><ellipse cx="112" cy="103" rx="10" ry="24" transform="rotate(-48 112 103)"/><ellipse cx="132" cy="133" rx="9" ry="22" transform="rotate(42 132 133)"/><ellipse cx="92" cy="77" rx="8" ry="20" transform="rotate(-35 92 77)"/><ellipse cx="205" cy="147" rx="10" ry="25" transform="rotate(45 205 147)"/><ellipse cx="227" cy="112" rx="9" ry="22" transform="rotate(28 227 112)"/><ellipse cx="170" cy="183" rx="8" ry="20" transform="rotate(-48 170 183)"/></g>
+      <g fill="#f4d88f"><circle cx="76" cy="91" r="7"/><circle cx="92" cy="54" r="6"/><circle cx="111" cy="69" r="5"/><circle cx="247" cy="72" r="6"/><circle cx="263" cy="91" r="5"/></g>
+      <g transform="translate(68 190)"><path d="M0 42 Q-5 10 5 -15" fill="none" stroke="#668b6b" stroke-width="3"/><g fill="#e3a7a0"><ellipse cx="4" cy="-18" rx="9" ry="16"/><ellipse cx="-10" cy="-8" rx="9" ry="15" transform="rotate(-55 -10 -8)"/><ellipse cx="17" cy="-7" rx="9" ry="15" transform="rotate(55 17 -7)"/></g><circle cx="4" cy="-9" r="6" fill="#f4d88f"/></g>
+      <g transform="translate(267 205)"><path d="M0 36 Q5 10 -4 -13" fill="none" stroke="#668b6b" stroke-width="3"/><g fill="#e9b47d"><ellipse cx="-4" cy="-17" rx="9" ry="15"/><ellipse cx="-17" cy="-7" rx="9" ry="14" transform="rotate(-55 -17 -7)"/><ellipse cx="10" cy="-6" rx="9" ry="14" transform="rotate(55 10 -6)"/></g><circle cx="-4" cy="-8" r="5" fill="#f6d88e"/></g>
+      <path d="M193 207 C231 143 267 147 278 168 C282 186 245 210 205 232Z" fill="#a53f61"/><path d="M191 210 C224 139 244 125 258 139 C270 158 238 202 202 235Z" fill="#d65d69"/><path d="M187 214 C202 150 225 135 238 145 C247 165 220 209 198 238Z" fill="#ed986b"/>
+      <ellipse cx="166" cy="220" rx="63" ry="57" fill="url(#birdBody)"/><ellipse cx="147" cy="225" rx="42" ry="43" fill="#f3c09d"/><path d="M133 219 C140 180 184 174 201 203 C183 227 167 247 140 251 C128 241 126 231 133 219Z" fill="url(#wing)"/><path d="M142 230 C158 208 176 200 193 204" fill="none" stroke="#f6c5a8" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="126" cy="177" r="39" fill="#eaa58a"/><path d="M99 158 C103 124 137 120 153 143 C136 138 124 149 117 166Z" fill="#d85a70"/><circle cx="116" cy="174" r="15" fill="#fff"/><circle cx="119" cy="174" r="8" fill="#536c5d"/><circle cx="121" cy="171" r="3" fill="#fff"/><path d="M88 184 L65 194 L91 199Z" fill="#e5b65f"/><path d="M151 252 Q160 270 151 279 M174 256 Q184 272 177 281" fill="none" stroke="#e5b65f" stroke-width="4" stroke-linecap="round"/><path d="M142 281 L160 281 M169 282 L187 282" stroke="#e5b65f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M205 77 C194 62 176 74 185 88 L204 105 L223 87 C235 72 216 61 205 77Z" fill="#c65c70"/><path d="M283 246 C276 236 263 244 270 255 L284 268 L297 254 C304 243 290 236 283 246Z" fill="#e8b36e"/>
+    </svg>
+    <div class="art-copy"><h2>Better health, stronger communities</h2><p>Monitor health indicators, understand progress<br>and support informed decisions across Ayodhya.</p></div>
+    <div class="dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   </div>
-  <div class="content">
-    <h3>Administrator Login</h3>
+  <div class="form-panel">
+    <div class="brand"><div class="brand-mark">Ayodhya Health</div><div class="brand-sub">HEALTH INDICATORS PORTAL</div></div>
+    <h1>Welcome back</h1><p class="welcome">Sign in to continue to your dashboard</p>
     <form id="loginForm">
-      <label>Email Address</label>
-      <input id="email" type="email" required
-        placeholder="Enter your email">
-
-      <label>Password</label>
-      <input id="password" type="password" required
-        placeholder="Enter your password">
-
-      <button id="loginButton" type="submit">SIGN IN</button>
+      <label for="email">Email address</label><input id="email" type="email" autocomplete="username" required placeholder="Enter your email">
+      <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+      <div class="forgot"><button id="resetButton" type="button">Forgot password?</button></div>
+      <button class="primary" id="loginButton" type="submit">Sign in</button>
     </form>
-
-    <div class="link">
-      <button id="resetButton" type="button">Forgot password?</button>
-    </div>
-    <div id="message" class="message" role="status"></div>
-    <footer>Authorized users only</footer>
+    <div class="divider">or</div><div class="google-note">🔒 &nbsp; <strong>Secure administrator access</strong></div>
+    <div id="message" role="status" aria-live="polite"></div><div class="create-note">Authorized users only · Ayodhya District</div>
   </div>
-</div>
-
-<div class="container dashboard hidden" id="dashboard">
-  <h2>Health Indicators Dashboard</h2>
-  <p id="welcome"></p>
-  <div class="cards">
-    <div class="card">Maternal Health</div>
-    <div class="card">Child Health</div>
-    <div class="card">Immunization</div>
-    <div class="card">Family Planning</div>
-    <div class="card">NCD Indicators</div>
-    <div class="card">Communicable Diseases</div>
-    <div class="card">ASHA Indicators</div>
-    <div class="card">Health Facility Indicators</div>
-  </div>
+</section>
+<section class="dashboard hidden" id="dashboard">
+  <h2>Health Indicators Dashboard</h2><p id="welcome"></p>
+  <div class="cards"><div class="card">Maternal Health</div><div class="card">Child Health</div><div class="card">Immunization</div><div class="card">Family Planning</div><div class="card">NCD Indicators</div><div class="card">Communicable Diseases</div><div class="card">ASHA Indicators</div><div class="card">Health Facility Indicators</div></div>
   <button id="logoutButton">SIGN OUT</button>
-</div>
-
+</section>
 <script type="module">
-import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-
-import {
-  getAuth, signInWithEmailAndPassword,
-  sendPasswordResetEmail, onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-
-import {
-  getFirestore, doc, getDoc
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-// Replace with your actual Firebase web app configuration.
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCtYCwoJzOnNx8IZGkNYXktWfwiOyyr7DY",
   authDomain: "health-indicators-ayodhya.firebaseapp.com",
@@ -124,95 +87,31 @@ const firebaseConfig = {
   appId: "1:10914483082:web:981d49648e8ec29f76d673",
   measurementId: "G-SFY2D16S79"
 };
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const loginPanel = document.getElementById("loginPanel");
-const dashboard = document.getElementById("dashboard");
-const message = document.getElementById("message");
-const loginButton = document.getElementById("loginButton");
-
-function showMessage(text, error=false) {
-  message.textContent = text;
-  message.style.color = error ? "#c0392b" : "#16834a";
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const loginPanel=document.getElementById("loginPanel"),dashboard=document.getElementById("dashboard"),message=document.getElementById("message"),loginButton=document.getElementById("loginButton");
+function showMessage(text,error=false){message.textContent=text;message.style.color=error?"#b54747":"#557f70"}
+async function loadProfile(user){
+ const profile=await getDoc(doc(db,"users",user.uid));
+ if(!profile.exists()||profile.data().role!=="admin"||profile.data().active!==true){await signOut(auth);showMessage("Access denied. Contact your administrator.",true);return}
+ loginPanel.classList.add("hidden");dashboard.classList.remove("hidden");
+ document.getElementById("welcome").textContent="Welcome, "+(profile.data().name||user.email);
 }
-
-async function loadProfile(user) {
-  const profile = await getDoc(doc(db, "users", user.uid));
-
-  if (!profile.exists() ||
-      profile.data().role !== "admin" ||
-      profile.data().active !== true) {
-    await signOut(auth);
-    showMessage("Access denied. Contact administrator.", true);
-    return;
-  }
-
-  loginPanel.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-  document.getElementById("welcome").textContent =
-    "Welcome, " + (profile.data().name || user.email);
-}
-
-document.getElementById("loginForm")
-.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  loginButton.disabled = true;
-  showMessage("Signing in...");
-
-  try {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    const result = await signInWithEmailAndPassword(
-      auth, email, password
-    );
-    await loadProfile(result.user);
-
-  } catch (error) {
-    showMessage("Login failed: " + error.message, true);
-  } finally {
-    loginButton.disabled = false;
-  }
+document.getElementById("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();loginButton.disabled=true;loginButton.textContent="Signing in…";showMessage("Checking your account…");
+ try{const result=await signInWithEmailAndPassword(auth,document.getElementById("email").value.trim(),document.getElementById("password").value);await loadProfile(result.user)}
+ catch(error){showMessage("Unable to sign in. Check your email and password, then try again.",true);console.error("Login error:",error)}
+ finally{loginButton.disabled=false;loginButton.textContent="Sign in"}
 });
-
-document.getElementById("resetButton")
-.addEventListener("click", async () => {
-  const email = document.getElementById("email").value.trim();
-
-  if (!email) {
-    showMessage("Enter your email address first.", true);
-    return;
-  }
-
-  try {
-    await sendPasswordResetEmail(auth, email);
-    showMessage("Password reset email sent.");
-  } catch (error) {
-    showMessage(error.message, true);
-  }
+document.getElementById("resetButton").addEventListener("click",async()=>{
+ const email=document.getElementById("email").value.trim();if(!email){showMessage("Enter your email address first to reset your password.",true);return}
+ try{await sendPasswordResetEmail(auth,email);showMessage("Password reset email sent. Please check your inbox.")}
+ catch(error){showMessage("Could not send the reset email. Please verify the address.",true);console.error("Password reset error:",error)}
 });
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    loginPanel.classList.remove("hidden");
-    dashboard.classList.add("hidden");
-    return;
-  }
-
-  try {
-    await loadProfile(user);
-  } catch (error) {
-    await signOut(auth);
-    showMessage("Unable to verify your account.", true);
-  }
+onAuthStateChanged(auth,async user=>{
+ if(!user){loginPanel.classList.remove("hidden");dashboard.classList.add("hidden");return}
+ try{await loadProfile(user)}catch(error){await signOut(auth);showMessage("Unable to verify your account. Please sign in again.",true);console.error(error)}
 });
-
-document.getElementById("logoutButton")
-.addEventListener("click", () => signOut(auth));
+document.getElementById("logoutButton").addEventListener("click",()=>signOut(auth));
 </script>
 </body>
 </html>
-Create Health Indicators login page

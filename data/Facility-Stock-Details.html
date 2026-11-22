@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayodhya Health | Facility Stock Dashboard</title>
+<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+<style>
+:root{--ink:#183b32;--muted:#6e827a;--sage:#a8c8bb;--sage2:#e8f1ec;--line:#dce8e1;--paper:#f3f7f4;--white:#fff;--navy:#192338;--gold:#d3a451;--red:#c96e63}
+*{box-sizing:border-box}body{margin:0;padding:18px;background:#758079;font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+.shell{max-width:1600px;margin:auto;background:var(--paper);min-height:calc(100vh - 36px);border-radius:14px;overflow:hidden;box-shadow:0 12px 35px #172b241a}
+header{background:#fff;border-bottom:1px solid var(--line);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:13px}.back-btn{width:42px;height:42px;flex:0 0 42px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:22px;cursor:pointer;padding:0}.back-btn:hover{background:var(--sage2)}.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--sage2);display:grid;place-items:center;color:#537e69;font-size:24px;font-weight:bold}
+.brand h1{font: bold 21px Georgia,serif;margin:0;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:5px}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{font-size:11px;color:#507563;background:var(--sage2);border:1px solid var(--line);padding:9px 13px;border-radius:20px}
+button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:7px;padding:10px 13px;cursor:pointer;font-size:11px}button.primary{background:#537e69;color:#fff;border-color:#537e69}
+main{padding:26px}.intro{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:17px}.eyebrow{font-size:10px;letter-spacing:1.8px;color:#789486;text-transform:uppercase}.intro h2{font: bold 32px Georgia,serif;margin:7px 0 4px}.intro p{margin:0;color:var(--muted);font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:18px 0}.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:17px 19px;min-height:105px}.kpi label{display:block;color:var(--muted);font-size:10px;margin-bottom:10px}.kpi strong{font: bold 27px Georgia,serif}.kpi small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.panel,.chart-card,.table-panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px}.panel h3,.chart-card h3,.table-panel h3{font-size:14px;margin:0 0 14px}
+.summary-table{width:100%;border-collapse:collapse;font-size:12px}.summary-table th{background:var(--navy);color:#fff;text-align:left;padding:10px}.summary-table td{padding:10px;border-bottom:1px solid var(--line)}.summary-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}.summary-table tr:last-child td{font-weight:bold;border-bottom:0}
+.bar-list{display:grid;gap:13px}.bar-row{display:grid;grid-template-columns:45px 1fr 42px;align-items:center;gap:10px;font-size:11px}.track{height:11px;border-radius:20px;background:#edf2ef;overflow:hidden}.fill{height:100%;border-radius:20px;background:#83aa96}
+.charts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:14px 0}.chart-card{min-width:0}.chart-card .sub{font-size:10px;color:var(--muted);margin-top:-8px}.chart-body{display:flex;align-items:center;gap:15px;margin-top:16px}.donut{width:130px;height:130px;flex:0 0 130px;border-radius:50%;position:relative;background:#e8efeb}.donut:after{content:"";position:absolute;inset:23px;border-radius:50%;background:#fff}.donut-center{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;flex-direction:column}.donut-center b{font: bold 24px Georgia,serif}.donut-center span{font-size:9px;color:var(--muted)}.legend{display:grid;gap:9px;font-size:10px;color:var(--muted)}.legend-item{display:flex;align-items:center;gap:6px}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 9px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filters input,.filters select{border:1px solid var(--line);border-radius:7px;padding:10px 11px;font-size:11px;background:#fff;color:var(--ink)}.filters input{min-width:220px}
+.table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}table.data{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}table.data th{position:sticky;top:0;background:var(--navy);color:#fff;text-align:left;padding:11px 12px}table.data td{padding:9px 12px;border-bottom:1px solid #edf1ee}table.data tbody tr:hover{background:#f5f9f6}.num{text-align:right;font-variant-numeric:tabular-nums}.type{display:inline-block;padding:4px 8px;border-radius:20px;background:var(--sage2);color:#456c5a;font-size:10px;font-weight:bold}.availability{font-weight:bold}.high{color:#397b5a}.mid{color:#b17d2c}.low{color:#bd5d54}.count{font-size:10px;color:var(--muted);margin-top:10px}
+footer{text-align:center;padding:14px 20px 20px;color:#87968f;font-size:10px}
+@media(max-width:1050px){.charts{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}}
+@media(max-width:700px){body{padding:0}.shell{border-radius:0}header,main{padding:16px}.kpis{grid-template-columns:1fr 1fr}.charts{grid-template-columns:1fr}.intro h2{font-size:26px}.chart-body{justify-content:flex-start}}
+@media print{body{padding:0;background:#fff}.shell{box-shadow:none}.header-actions button,.filters{display:none}.table-wrap{overflow:visible}table.data{font-size:8px}table.data th{position:static}}
+</style>
+</head>
+<body><div class="shell">
+<header><div class="brand"><button class="back-btn" type="button" onclick="location.href='../index.html'" title="Back to Ayodhya Health portal" aria-label="Back to Ayodhya Health portal">&#8592;</button><div class="brand-mark">+</div><div><h1>AYODHYA HEALTH</h1><small>FACILITY STOCK MONITORING DASHBOARD</small></div></div><div class="header-actions"><span class="pill" id="connectionStatus">Google Sheets · setup required</span><button onclick="configureSheetAPI()">Set Sheet API URL</button><button onclick="loadLiveData()">Refresh data</button><button onclick="window.print()">Print</button><button class="primary" onclick="downloadCSV()">Export CSV</button></div></header>
+<main>
+<div class="intro"><div><div class="eyebrow">AYODHYA DISTRICT · FACILITY STOCK MONITORING</div><h2>EDL Availability</h2><p>Facility-wise active stock count and percentage availability</p></div><span class="pill">Source: Google Sheets · A:E facility data, G:H EDL benchmarks</span></div>
+<section class="kpis">
+<div class="kpi"><label>TOTAL FACILITIES</label><strong id="kFacilities">55</strong><small>Complete facility records</small></div>
+<div class="kpi"><label>ACTIVE STOCK COUNT</label><strong id="kStock">9,390</strong><small>Sum across listed facilities</small></div>
+<div class="kpi"><label>AVERAGE AVAILABILITY</label><strong id="kAvg">72.4%</strong><small>Simple mean of facility percentages</small></div>
+</section>
+<section class="two-col">
+<div class="panel"><h3>Expected EDL drugs by facility type</h3><p style="font-size:10px;color:var(--muted);margin:-7px 0 12px">Reference benchmark per facility — not a count of facilities or actual stock</p><table class="summary-table"><thead><tr><th>Facility Type</th><th style="text-align:right">Number of EDL</th></tr></thead><tbody id="edlRows"></tbody></table></div>
+<div class="panel"><h3>Number of facilities in this dataset</h3><div class="bar-list" id="typeBars"></div></div>
+</section>
+<section class="charts">
+<div class="chart-card"><h3>Facilities by type</h3><div class="sub">Share of 55 complete facility records</div><div class="chart-body"><div class="donut" id="typeDonut"><div class="donut-center"><b>55</b><span>facilities</span></div></div><div class="legend" id="typeLegend"></div></div></div>
+<div class="chart-card"><h3>Availability bands</h3><div class="sub">Facilities grouped by availability percentage</div><div class="chart-body"><div class="donut" id="bandDonut"><div class="donut-center"><b>55</b><span>facilities</span></div></div><div class="legend" id="bandLegend"></div></div></div>
+<div class="chart-card"><h3>Mean availability by facility type</h3><div class="sub">Mean of active stock ÷ type-specific EDL benchmark</div><div class="chart-body"><div class="donut" id="avgDonut"><div class="donut-center"><b id="districtAvg">72.4%</b><span>overall mean</span></div></div><div class="legend" id="avgLegend"></div></div></div>
+</section>
+<section class="panel" style="margin:14px 0"><h3 style="margin-bottom:7px">How availability is calculated</h3><div style="font-size:11px;color:var(--muted);line-height:1.6">The live Google Sheet facility table is read from columns A:E; the EDL benchmark table is read from columns G:H. The EDL table defines the expected number of drugs for each facility type: DH = 344, CHC = 253, PHC = 211. Each facility is compared with its own type's benchmark. <b>Availability (%) = Active Stock Count ÷ Expected EDL × 100.</b> EDL Gap = Expected EDL − Active Stock Count.</div></section>
+<section class="table-panel"><div class="table-head"><h3>Facility-level details</h3><div class="filters"><input id="search" type="search" placeholder="Search facility name…"><select id="typeFilter"><option value="">All facility types</option><option>DH</option><option>CHC</option><option>PHC</option></select><select id="bandFilter"><option value="">All availability bands</option><option value="high">80% and above</option><option value="mid">60% to below 80%</option><option value="low">Below 60%</option></select><select id="sort"><option value="sn">Original order</option><option value="availability">Availability: high to low</option><option value="availabilityAsc">Availability: low to high</option><option value="stock">Active stock: high to low</option></select></div></div><div class="table-wrap"><table class="data"><thead><tr><th>SN</th><th>Facility Name</th><th>Facility Type</th><th class="num">Expected EDL</th><th class="num">Active Stock Count</th><th class="num">EDL Gap</th><th class="num">% Availability</th></tr></thead><tbody id="dataRows"></tbody></table></div><div class="count" id="rowCount"></div></section>
+</main><footer>Ayodhya District · Facility Stock Details · EDL benchmark is the expected drug-list count for each facility type. Availability = Active Stock Count ÷ Expected EDL × 100. Incomplete trailing rows excluded.</footer>
+</div>
+<script>
+let SOURCE = {"records": [{"sn": 1, "facility": "Ayodhya - District Women Hospital", "type": "DH", "stock": 330, "edlBenchmark": 344, "gap": 14, "availability": 95.9}, {"sn": 2, "facility": "Ayodhya - District Hospital", "type": "DH", "stock": 312, "edlBenchmark": 344, "gap": 32, "availability": 90.7}, {"sn": 3, "facility": "Badagao - Phc (Ayodhya)", "type": "PHC", "stock": 190, "edlBenchmark": 211, "gap": 21, "availability": 90.0}, {"sn": 4, "facility": "Ayodhya - Sunwan CHC", "type": "CHC", "stock": 224, "edlBenchmark": 253, "gap": 29, "availability": 88.5}, {"sn": 5, "facility": "Pachhiana - Phc", "type": "PHC", "stock": 185, "edlBenchmark": 211, "gap": 26, "availability": 87.7}, {"sn": 6, "facility": "PHC Sarai dhanethi", "type": "PHC", "stock": 183, "edlBenchmark": 211, "gap": 28, "availability": 86.7}, {"sn": 7, "facility": "Ayodhya - 50 Bede Hospital Devgaon - SH", "type": "DH", "stock": 295, "edlBenchmark": 344, "gap": 49, "availability": 85.8}, {"sn": 8, "facility": "Khandasa Chc (Ayodhya)", "type": "CHC", "stock": 216, "edlBenchmark": 253, "gap": 37, "availability": 85.4}, {"sn": 9, "facility": "Shantipur - Phc", "type": "PHC", "stock": 179, "edlBenchmark": 211, "gap": 32, "availability": 84.8}, {"sn": 10, "facility": "Haringtonganj CHC (Faizabad CMO)", "type": "CHC", "stock": 213, "edlBenchmark": 253, "gap": 40, "availability": 84.2}, {"sn": 11, "facility": "Mayabazaar CHC (Faizabad CMO)", "type": "CHC", "stock": 212, "edlBenchmark": 253, "gap": 41, "availability": 83.8}, {"sn": 12, "facility": "ayodhya-Vijanpur sahajahara phc", "type": "PHC", "stock": 173, "edlBenchmark": 211, "gap": 38, "availability": 82.0}, {"sn": 13, "facility": "Purekamgar - Phc", "type": "PHC", "stock": 173, "edlBenchmark": 211, "gap": 38, "availability": 82.0}, {"sn": 14, "facility": "Arwat - Phc", "type": "PHC", "stock": 172, "edlBenchmark": 211, "gap": 39, "availability": 81.5}, {"sn": 15, "facility": "Patranga - Phc", "type": "PHC", "stock": 169, "edlBenchmark": 211, "gap": 42, "availability": 80.1}, {"sn": 16, "facility": "ayodhya-Narauli phc", "type": "PHC", "stock": 168, "edlBenchmark": 211, "gap": 43, "availability": 79.6}, {"sn": 17, "facility": "Khadbhariya - Phc", "type": "PHC", "stock": 168, "edlBenchmark": 211, "gap": 43, "availability": 79.6}, {"sn": 18, "facility": "Mawai CHC", "type": "CHC", "stock": 201, "edlBenchmark": 253, "gap": 52, "availability": 79.4}, {"sn": 19, "facility": "Ayodhya - 100 bed District Comb Hosp Kumar Ganj", "type": "DH", "stock": 273, "edlBenchmark": 344, "gap": 71, "availability": 79.4}, {"sn": 20, "facility": "Katsarai - Phc", "type": "PHC", "stock": 167, "edlBenchmark": 211, "gap": 44, "availability": 79.1}, {"sn": 21, "facility": "Poora Bazar - Chc", "type": "CHC", "stock": 200, "edlBenchmark": 253, "gap": 53, "availability": 79.1}, {"sn": 22, "facility": "Milkipur - Chc", "type": "CHC", "stock": 197, "edlBenchmark": 253, "gap": 56, "availability": 77.9}, {"sn": 23, "facility": "Rudauli - Chc", "type": "CHC", "stock": 196, "edlBenchmark": 253, "gap": 57, "availability": 77.5}, {"sn": 24, "facility": "Devkali -UPHC (Ayodhya)", "type": "PHC", "stock": 162, "edlBenchmark": 211, "gap": 49, "availability": 76.8}, {"sn": 25, "facility": "Bikapur - Chc", "type": "CHC", "stock": 189, "edlBenchmark": 253, "gap": 64, "availability": 74.7}, {"sn": 26, "facility": "Pital Retiya - Uphc", "type": "PHC", "stock": 156, "edlBenchmark": 211, "gap": 55, "availability": 73.9}, {"sn": 27, "facility": "Kumarganj - Phc", "type": "PHC", "stock": 154, "edlBenchmark": 211, "gap": 57, "availability": 73.0}, {"sn": 28, "facility": "Mahboobganj - Phc", "type": "PHC", "stock": 154, "edlBenchmark": 211, "gap": 57, "availability": 73.0}, {"sn": 29, "facility": "Shahganj - Phc - addshahganj", "type": "PHC", "stock": 154, "edlBenchmark": 211, "gap": 57, "availability": 73.0}, {"sn": 30, "facility": "Gaddopur - Phc", "type": "PHC", "stock": 152, "edlBenchmark": 211, "gap": 59, "availability": 72.0}, {"sn": 31, "facility": "Madana - Phc", "type": "PHC", "stock": 152, "edlBenchmark": 211, "gap": 59, "availability": 72.0}, {"sn": 32, "facility": "Darshan Nagar - Phc", "type": "PHC", "stock": 151, "edlBenchmark": 211, "gap": 60, "availability": 71.6}, {"sn": 33, "facility": "Panbharia - Phc", "type": "PHC", "stock": 151, "edlBenchmark": 211, "gap": 60, "availability": 71.6}, {"sn": 34, "facility": "Janaura - Uphc", "type": "PHC", "stock": 146, "edlBenchmark": 211, "gap": 65, "availability": 69.2}, {"sn": 35, "facility": "Taaron CHC (Faizabad CMO)", "type": "CHC", "stock": 174, "edlBenchmark": 253, "gap": 79, "availability": 68.8}, {"sn": 36, "facility": "Haidarganj Chc (Ayodhya)", "type": "CHC", "stock": 172, "edlBenchmark": 253, "gap": 81, "availability": 68.0}, {"sn": 37, "facility": "Bhartkund - Phc", "type": "PHC", "stock": 143, "edlBenchmark": 211, "gap": 68, "availability": 67.8}, {"sn": 38, "facility": "Chaktirth - Uphc", "type": "PHC", "stock": 143, "edlBenchmark": 211, "gap": 68, "availability": 67.8}, {"sn": 39, "facility": "Abbu Sarai - Uphc", "type": "PHC", "stock": 141, "edlBenchmark": 211, "gap": 70, "availability": 66.8}, {"sn": 40, "facility": "Haidarganj - Phc", "type": "PHC", "stock": 141, "edlBenchmark": 211, "gap": 70, "availability": 66.8}, {"sn": 41, "facility": "Chaure Bazar - Phc", "type": "PHC", "stock": 139, "edlBenchmark": 211, "gap": 72, "availability": 65.9}, {"sn": 42, "facility": "Amaniganj - Phc", "type": "PHC", "stock": 137, "edlBenchmark": 211, "gap": 74, "availability": 64.9}, {"sn": 43, "facility": "Ahihar - Phc", "type": "PHC", "stock": 133, "edlBenchmark": 211, "gap": 78, "availability": 63.0}, {"sn": 44, "facility": "Kochha Bazar - Phc", "type": "PHC", "stock": 132, "edlBenchmark": 211, "gap": 79, "availability": 62.6}, {"sn": 45, "facility": "Sujaganj - Phc", "type": "PHC", "stock": 132, "edlBenchmark": 211, "gap": 79, "availability": 62.6}, {"sn": 46, "facility": "Ayodhya - Sri Ram Ayodhya Hospital", "type": "DH", "stock": 215, "edlBenchmark": 344, "gap": 129, "availability": 62.5}, {"sn": 47, "facility": "Saidpur - Phc", "type": "PHC", "stock": 125, "edlBenchmark": 211, "gap": 86, "availability": 59.2}, {"sn": 48, "facility": "Mubarakganj - Phc", "type": "PHC", "stock": 123, "edlBenchmark": 211, "gap": 88, "availability": 58.3}, {"sn": 49, "facility": "Gosaiganj Chc", "type": "CHC", "stock": 139, "edlBenchmark": 253, "gap": 114, "availability": 54.9}, {"sn": 50, "facility": "Masaudha CHC (Faizabad CMO)", "type": "CHC", "stock": 138, "edlBenchmark": 253, "gap": 115, "availability": 54.5}, {"sn": 51, "facility": "Sohawal - Chc", "type": "CHC", "stock": 135, "edlBenchmark": 253, "gap": 118, "availability": 53.4}, {"sn": 52, "facility": "Ranibazar - Phc", "type": "PHC", "stock": 111, "edlBenchmark": 211, "gap": 100, "availability": 52.6}, {"sn": 53, "facility": "Umapur - Phc", "type": "PHC", "stock": 111, "edlBenchmark": 211, "gap": 100, "availability": 52.6}, {"sn": 54, "facility": "Maushiwala - Phc", "type": "PHC", "stock": 109, "edlBenchmark": 211, "gap": 102, "availability": 51.7}, {"sn": 55, "facility": "Kashmiri Mohalla - Uphc", "type": "PHC", "stock": 80, "edlBenchmark": 211, "gap": 131, "availability": 37.9}], "edl": {"DH": 344, "CHC": 253, "PHC": 211}};
+let DATA = SOURCE.records;
+let EDL = SOURCE.edl;
+let API_URL = "";
+try { API_URL = localStorage.getItem("ayodhya_edl_sheet_api_url") || ""; } catch(e) {}
+function configureSheetAPI(){
+ const entered = prompt("Paste the deployed Google Apps Script Web App URL ending in /exec:", API_URL);
+ if (entered === null) return;
+ const value = entered.trim();
+ if (!/^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(value)) {
+   alert("Please enter the full Google Apps Script Web App URL ending in /exec.");
+   return;
+ }
+ API_URL = value;
+ try { localStorage.setItem("ayodhya_edl_sheet_api_url", API_URL); } catch(e) {}
+ loadLiveData();
+}
+const $ = id => document.getElementById(id);
+const COLORS = ["#638b78","#d3a451","#c96e63"];
+const TYPES = ["DH","CHC","PHC"];
+const total = a => a.reduce((s,x)=>s+x,0);
+const avg = a => a.length ? total(a)/a.length : 0;
+function band(v){return v>=80?"high":v>=60?"mid":"low"}
+function donut(id,counts,colors=COLORS){
+ const sum=total(counts);let acc=0;
+ const stops=counts.map((n,i)=>{const s=acc;acc+=sum?n/sum*100:0;return `${colors[i%colors.length]} ${s}% ${acc}%`});
+ $(id).style.background=`conic-gradient(${stops.join(",")})`;
+}
+function legend(id,labels,counts,colors=COLORS){
+ const sum=total(counts);
+ $(id).innerHTML=labels.map((l,i)=>`<div class="legend-item"><i class="dot" style="background:${colors[i%colors.length]}"></i><span>${l}: <b>${counts[i]}</b>${sum?` (${(counts[i]/sum*100).toFixed(1)}%)`:""}</span></div>`).join("");
+}
+function init(){
+ const typeCounts=TYPES.map(t=>DATA.filter(d=>d.type===t).length);
+ const stockTotal=total(DATA.map(d=>d.stock)), overall=avg(DATA.map(d=>d.availability));
+ $("kFacilities").textContent=DATA.length;
+ $("kStock").textContent=stockTotal.toLocaleString("en-IN");
+ $("kAvg").textContent=overall.toFixed(1)+"%";
+ $("districtAvg").textContent=overall.toFixed(1)+"%";
+ $("edlRows").innerHTML=TYPES.map(t=>`<tr><td>${t}</td><td>${EDL[t]||0}</td></tr>`).join("");
+ $("typeBars").innerHTML=TYPES.map((t,i)=>`<div class="bar-row"><b>${t}</b><div class="track"><div class="fill" style="width:${typeCounts[i]/Math.max(...typeCounts)*100}%"></div></div><b>${typeCounts[i]}</b></div>`).join("");
+ donut("typeDonut",typeCounts);legend("typeLegend",TYPES,typeCounts);
+ const bands=[DATA.filter(d=>d.availability>=80).length,DATA.filter(d=>d.availability>=60&&d.availability<80).length,DATA.filter(d=>d.availability<60).length];
+ donut("bandDonut",bands);legend("bandLegend",["80% and above","60% to below 80%","Below 60%"],bands);
+ const avgs=TYPES.map(t=>avg(DATA.filter(d=>d.type===t).map(d=>d.availability)));
+ donut("avgDonut",avgs,["#638b78","#86a99a","#b6cfc3"]);
+ legend("avgLegend",TYPES,avgs.map(v=>Number(v.toFixed(1))),["#638b78","#86a99a","#b6cfc3"]);
+ render();
+}
+function render(){
+ const q=$("search").value.toLowerCase().trim(),type=$("typeFilter").value,b=$("bandFilter").value,sort=$("sort").value;
+ let a=DATA.filter(d=>(!q||d.facility.toLowerCase().includes(q))&&(!type||d.type===type)&&(!b||band(d.availability)===b));
+ if(sort==="availability")a.sort((x,y)=>y.availability-x.availability);
+ else if(sort==="availabilityAsc")a.sort((x,y)=>x.availability-y.availability);
+ else if(sort==="stock")a.sort((x,y)=>y.stock-x.stock);
+ else a.sort((x,y)=>x.sn-y.sn);
+ $("dataRows").innerHTML=a.map(d=>`<tr><td>${d.sn}</td><td><b>${esc(d.facility)}</b></td><td><span class="type">${esc(d.type)}</span></td><td class="num">${d.edlBenchmark}</td><td class="num">${d.stock.toLocaleString("en-IN")}</td><td class="num">${d.gap}</td><td class="num availability ${band(d.availability)}">${d.availability.toFixed(1)}%</td></tr>`).join("");
+ $("rowCount").textContent=`Showing ${a.length} of ${DATA.length} facilities`;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+["search","typeFilter","bandFilter","sort"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",render));
+function downloadCSV(){
+ const head=["SN","Facility Name","Facility Type","Active Stock Count","% Availability"];
+ const lines=[head.join(","),...DATA.map(d=>[d.sn,`"${d.facility.replace(/"/g,'""')}"`,d.type,d.stock,d.availability.toFixed(1)].join(","))];
+ const blob=new Blob(["\ufeff"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="Ayodhya_Facility_Stock_Details.csv";a.click();URL.revokeObjectURL(a.href);
+}
+function loadJSONP(url){
+ return new Promise((resolve,reject)=>{
+  const cb="edlSheetCallback_"+Date.now()+"_"+Math.floor(Math.random()*10000);
+  const script=document.createElement("script");
+  let done=false;
+  const timer=setTimeout(()=>finish(new Error("Google Sheets request timed out")),20000);
+  function finish(err,data){
+   if(done)return;done=true;clearTimeout(timer);delete window[cb];script.remove();
+   err?reject(err):resolve(data);
+  }
+  window[cb]=data=>finish(null,data);
+  script.onerror=()=>finish(new Error("Could not reach the Apps Script web app. Check its deployment access."));
+  script.src=url+(url.includes("?")?"&":"?")+"callback="+cb+"&_="+Date.now();
+  document.head.appendChild(script);
+ });
+}
+async function loadLiveData(){
+ const status=$("connectionStatus");
+ if(!API_URL){
+  status.textContent="Google Sheets · setup required";
+  return;
+ }
+ status.textContent="Connecting to Google Sheets…";
+ try{
+  const result=await loadJSONP(API_URL);
+  if(!result || !result.success) throw new Error(result?.error || "API returned an invalid response");
+  SOURCE=result;DATA=result.records||[];EDL=result.edl||{};
+  init();
+  status.textContent="Live Google Sheets · "+(result.totalRecords||DATA.length)+" facilities · updated "+new Date(result.updatedAt||Date.now()).toLocaleTimeString();
+ }catch(err){
+  status.textContent="Connection error · saved data shown";
+  console.error(err);
+  alert("Could not load live Google Sheets data: "+err.message);
+ }
+}
+init();
+loadLiveData();
+</script></body></html>
